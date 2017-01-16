@@ -10,6 +10,11 @@ namespace ShoppingCart
     {
         public decimal CalculateTotal(IEnumerable<Book> books)
         {
+            if (books.Count() > 4)
+            {
+                return books.Sum(b => b.Price * b.Count) * 0.75m;
+            }
+
             if (books.Count() > 3)
             {
                 return books.Sum(b => b.Price * b.Count) * 0.8m;
