@@ -89,5 +89,44 @@ namespace ShoppingCat.Test
             //assert
             actual.Should().Be(270);
         }
+
+        [Test]
+        public void Buy_The_First_1_and_The_Second_1_and_The_Third_3_and_The_Fourth_1_Should_320()
+        {
+            //arrange
+            var books = new List<Book>
+            {
+                new Book
+                {
+                    Name = "哈利波特-第一集",
+                    Count = 1,
+                    Price = 100
+                },
+                new Book
+                {
+                    Name = "哈利波特-第二集",
+                    Count = 1,
+                    Price = 100
+                },
+                new Book
+                {
+                    Name = "哈利波特-第三集",
+                    Count = 1,
+                    Price = 100
+                },
+                new Book
+                {
+                    Name = "哈利波特-第四集",
+                    Count = 1,
+                    Price = 100
+                }
+            };
+
+            //act
+            var actual = new ShoppingCartCalculator().CalculateTotal(books);
+
+            //assert
+            actual.Should().Be(320);
+        }
     }
 }
