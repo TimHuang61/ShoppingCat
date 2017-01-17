@@ -91,7 +91,7 @@ namespace ShoppingCat.Test
         }
 
         [Test]
-        public void Buy_The_First_1_and_The_Second_1_and_The_Third_3_and_The_Fourth_1_Should_320()
+        public void Buy_The_First_1_and_The_Second_1_and_The_Third_1_and_The_Fourth_1_Should_320()
         {
             //arrange
             var books = new List<Book>
@@ -172,6 +172,40 @@ namespace ShoppingCat.Test
 
             //assert
             actual.Should().Be(375);
+        }
+
+
+        [Test]
+        public void Buy_The_First_1_and_The_Second_1_and_The_Third_2_Should_370()
+        {
+            //arrange
+            var books = new List<Book>
+            {
+                new Book
+                {
+                    Name = "哈利波特-第一集",
+                    Count = 1,
+                    Price = 100
+                },
+                new Book
+                {
+                    Name = "哈利波特-第二集",
+                    Count = 1,
+                    Price = 100
+                },
+                new Book
+                {
+                    Name = "哈利波特-第三集",
+                    Count = 2,
+                    Price = 100
+                }
+            };
+
+            //act
+            var actual = new ShoppingCartCalculator().CalculateTotal(books);
+
+            //assert
+            actual.Should().Be(370);
         }
     }
 }

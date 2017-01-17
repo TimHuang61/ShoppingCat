@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,27 +11,33 @@ namespace ShoppingCart
     {
         public decimal CalculateTotal(IEnumerable<Book> books)
         {
-            if (books.Count() > 4)
+            var tmpBooks = books.Where(b => b.Count > 0).ToList();
+            if (tmpBooks.Count > 0)
             {
-                return books.Sum(b => b.Price * b.Count) * 0.75m;
+                var total = tmpBooks.Sum(b => b.Price) * GetDiscount(tmpBooks.Count);
+                tmpBooks.ForEach(b => b.Count--);
+
+                return total + CalculateTotal(tmpBooks);
             }
 
-            if (books.Count() > 3)
-            {
-                return books.Sum(b => b.Price * b.Count) * 0.8m;
-            }
+            return 0;
+        }
 
-            if (books.Count() > 2)
+        private decimal GetDiscount(int count)
+        {
+            switch (count)
             {
-                return books.Sum(b => b.Price * b.Count) * 0.9m;
+                case 2:
+                    return 0.95m;
+                case 3:
+                    return 0.9m;
+                case 4:
+                    return 0.8m;
+                case 5:
+                    return 0.75m;
+                default:
+                    return 1;
             }
-
-            if (books.Count() > 1)
-            {
-                return books.Sum(b => b.Price * b.Count) * 0.95m;
-            }
-
-            return books.Sum(b => 100 * b.Count);
         }
     }
 }
