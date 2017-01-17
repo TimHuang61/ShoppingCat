@@ -207,5 +207,77 @@ namespace ShoppingCat.Test
             //assert
             actual.Should().Be(370);
         }
+
+        [Test]
+        public void Buy_The_First_1_and_The_Second_2_and_The_Third_2_Should_460()
+        {
+            //arrange
+            var books = new List<Book>
+            {
+                new Book
+                {
+                    Name = "哈利波特-第一集",
+                    Count = 1,
+                    Price = 100
+                },
+                new Book
+                {
+                    Name = "哈利波特-第二集",
+                    Count = 2,
+                    Price = 100
+                },
+                new Book
+                {
+                    Name = "哈利波特-第三集",
+                    Count = 2,
+                    Price = 100
+                }
+            };
+
+            //act
+            var actual = new ShoppingCartCalculator().CalculateTotal(books);
+
+            //assert
+            actual.Should().Be(460);
+        }
+
+        [Test]
+        public void Buy_The_First_1_and_The_Second_2_and_The_Third_2_and_The_Forth_2_Should_590()
+        {
+            //arrange
+            var books = new List<Book>
+            {
+                new Book
+                {
+                    Name = "哈利波特-第一集",
+                    Count = 1,
+                    Price = 100
+                },
+                new Book
+                {
+                    Name = "哈利波特-第二集",
+                    Count = 2,
+                    Price = 100
+                },
+                new Book
+                {
+                    Name = "哈利波特-第三集",
+                    Count = 2,
+                    Price = 100
+                },
+                new Book
+                {
+                    Name = "哈利波特-第四集",
+                    Count = 2,
+                    Price = 100
+                }
+            };
+
+            //act
+            var actual = new ShoppingCartCalculator().CalculateTotal(books);
+
+            //assert
+            actual.Should().Be(590);
+        }
     }
 }
