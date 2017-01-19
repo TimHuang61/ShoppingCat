@@ -22,8 +22,11 @@ namespace ShoppingCart
 
             if (tmpBooks.Count > 0)
             {
-                var total = tmpBooks.Sum(b => b.Price) * discountDic[tmpBooks.Count];
-                tmpBooks.ForEach(b => b.Count--);
+                var total = tmpBooks.Sum(b =>
+                {
+                    b.Count--;
+                    return b.Price;
+                }) * discountDic[tmpBooks.Count];
 
                 return total + CalculateTotal(tmpBooks);
             }
