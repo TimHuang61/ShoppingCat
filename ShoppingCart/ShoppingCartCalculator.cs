@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShoppingCart
 {
     public class ShoppingCartCalculator
     {
-        private readonly Dictionary<int, decimal> discountDic = new Dictionary<int, decimal>()
+        private readonly Dictionary<int, decimal> discountDic = new Dictionary<int, decimal>
         {
             {1, 1},
             {2, 0.95m},
@@ -22,9 +18,7 @@ namespace ShoppingCart
         {
             var tmpBooks = books.Where(b => b.Count > 0).ToList();
             if (tmpBooks.Count == 1)
-            {
                 return tmpBooks.Sum(b => b.Price * b.Count);
-            }
 
             if (tmpBooks.Count > 0)
             {
